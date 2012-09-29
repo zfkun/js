@@ -1,0 +1,55 @@
+/* Path UI */
+.path a.i-menu {
+	background: url(img/menu.png) no-repeat;
+	_background: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="img/menu.png");
+}
+.path a.i-menu:hover {
+	background: url(img/menu1.png) no-repeat;
+	_background: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="img/menu1.png");
+}
+
+.path a.i-ipad {
+	background: url(img/ipad.png) no-repeat;
+	_background: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="img/ipad.png");
+}
+.path a.i-ipad:hover {
+	background: url(img/ipad1.png) no-repeat;
+	_background: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="img/ipad1.png");
+}
+
+.path a.i-iphone {
+	background: url(img/iphone.png) no-repeat;
+	_background: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="img/iphone.png");
+}
+.path a.i-iphone:hover {
+	background: url(img/iphone1.png) no-repeat;
+	_background: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="img/iphone1.png");
+}
+
+.path a.i-tv {
+	background: url(img/tv.png) no-repeat;
+	_background: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="img/tv.png");
+}
+.path a.i-tv:hover {
+	background: url(img/tv1.png) no-repeat;
+	_background: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="img/tv1.png");
+}
+
+.path a.i-pc {
+	background: url(img/pc.png) no-repeat;
+	_background: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="img/pc.png");
+}
+.path a.i-pc:hover {
+	background: url(img/pc1.png) no-repeat;
+	_background: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="img/pc1.png");
+}

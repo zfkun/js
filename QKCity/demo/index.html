@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>QKCity - by zfkun Demo</title>
+<meta name="description" content="Demo for QKCity - by zfkun" />
+</head>
+
+<body>
+
+
+<h3>Base (offEmpty: false, data-emptyText: '')</h3>
+<p><select id="a1" name="a1"></select>-<select id="a2" name="a2"></select>-<select id="a3" name="a3"></select></p>
+<p><select id="b1" name="b1"></select>-<select id="b2" name="b2"></select>-<select id="b3" name="b3"></select></p>
+<p><select id="c1" name="c1"></select>-<select id="c2" name="c2"></select>-<select id="c3" name="c3"></select></p>
+<p><select id="d1" name="d1"></select>-<select id="d2" name="d2"></select>-<select id="d3" name="d3"></select></p>
+
+<hr/>
+
+<h3>offEmpty: true</h3>
+<p><select id="e1" name="e1"></select>-<select id="e2" name="e2"></select>-<select id="e3" name="e3"></select></p>
+<p><select id="f1" name="f1"></select>-<select id="f2" name="f2"></select>-<select id="f3" name="f3"></select></p>
+<p><select id="g1" name="g1"></select>-<select id="g2" name="g2"></select>-<select id="g3" name="g3"></select></p>
+<p><select id="h1" name="h1"></select>-<select id="h2" name="h2"></select>-<select id="h3" name="h3"></select></p>
+
+<hr/>
+
+<h3>data-emptyText: 'your text...'</h3>
+<p><select id="i1" name="i1" data-emptyText="-省份-"></select>-<select id="i2" name="i2" data-emptyText="-市/区-"></select>-<select id="i3" name="i3" data-emptyText="-区/县-"></select></p>
+<p><select id="j1" name="j1" data-emptyText="-省份-"></select>-<select id="j2" name="j2" data-emptyText="-市/区-"></select>-<select id="j3" name="j3" data-emptyText="-区/县-"></select></p>
+<p><select id="k1" name="k1" data-emptyText="-省份-"></select>-<select id="k2" name="k2" data-emptyText="-市/区-"></select>-<select id="k3" name="k3" data-emptyText="-区/县-"></select></p>
+<p><select id="l1" name="l1" data-emptyText="-省份-"></select>-<select id="l2" name="l2" data-emptyText="-市/区-"></select>-<select id="l3" name="l3" data-emptyText="-区/县-"></select></p>
+
+
+
+<script src="../build/city-full-min.js" type="text/javascript" ></script>
+<script>
+function initDemo() {
+    // Base
+    QKCity(['a1', 'a2', 'a3']);
+    QKCity(['b1', 'b2', 'b3'], [12]);
+    QKCity(['c1', 'c2', 'c3'], [12, 1202]);
+    QKCity(['d1', 'd2', 'd3'], [12, 1202, 120202]);
+
+    // offEmpty
+    QKCity(['e1', 'e2', 'e3'], [], { offEmpty : true });
+    QKCity(['f1', 'f2', 'f3'], [12], { offEmpty : true });
+    QKCity(['g1', 'g2', 'g3'], [12, 1202], { offEmpty : true });
+    QKCity(['h1', 'h2', 'h3'], [12, 1202, 120202], { offEmpty : true });
+
+    // data-emptyText
+    QKCity(['i1', 'i2', 'i3']);
+    QKCity(['j1', 'j2', 'j3'], [12]);
+    QKCity(['k1', 'k2', 'k3'], [12, 1202]);
+    QKCity(['l1', 'l2', 'l3'], [12, 1202, 120202]);
+}
+
+setTimeout(initDemo, 500);
+</script>
+
+</body>
+</html>
