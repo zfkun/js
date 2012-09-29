@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+  .demo {
+    display: block;
+    width: 300px;
+    height: 200px;
+  }
+  </style>
+  <link rel="stylesheet" href="path.css">
+</head>
+<body>
+
+  <div id="demo1" class="demo"></div>
+
+  <div id="demo2" class="demo"></div>
+
+  <p>Choose to notify: </p>
+  <input type="radio" name="d"><a href="http://www.zfkun.com" title="影の域" target="_blank">影の域</a>
+  <input type="radio" name="d"><a href="http://www.google.com" title="google" target="_top">google</a>
+  <input type="radio" name="d"><a href="http://www.apple.com" title="apple">apple</a>
+  <button id="notify">notify</button>
+
+
+  <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+  <script src="path.js"></script>
+  <script>
+    Path($('<div>').appendTo('#demo1'), {
+      xy : [0, 50],
+      button : [
+        [[0, 43], 'i-menu', '播放', '#'],
+        [[20, -41], 'i-ipad', 'ipad版', 'http://mobile.letv.com/'],
+        [[60, -23], 'i-iphone', 'iphone版', 'http://mobile.letv.com/'],
+        [[76, 14], 'i-tv', 'TV版', 'http://www.letv.com/zt/tvgw/index.html'],
+        [[68, 51], 'i-pc', '乐视网络电视', 'http://pc.letv.com/']
+      ]
+    });
+
+    var path2 = Path('#demo2', {
+      xy : [0, 0],
+      button : [
+        [[0, 0], 'i-menu', '播放', '#'],
+        [[17.5, -40], 'i-ipad', 'ipad版', 'http://mobile.letv.com/'],
+        [[76, 17.5], 'i-iphone', 'iphone版', 'http://mobile.letv.com/'],
+        [[17.5, 70], 'i-tv', 'TV版', 'http://www.letv.com/zt/tvgw/index.html']
+      ]
+    });
+
+    $('#notify').click(function(ev){
+      path2.notify('menu', $('input:checked[name=d]').next('a'));
+    });
+  </script>
+</body>
+</html>

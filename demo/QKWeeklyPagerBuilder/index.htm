@@ -1,0 +1,365 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Weekly Pager Maker</title>
+	<style type="text/css">
+	.pl370 {padding-left: 370px; }
+	.pl20 { padding-left: 20px; }
+	#preview span { margin: 0 3px; }
+	#preview a { margin: 0 10px; }
+	#preview a:hover, #preview a.hover { background-color: gray; }
+	#preview a span { margin: 0 3px; }
+	</style>
+</head>
+<body>
+	<h1>Weekly Pager Maker <small style="font-size: 14px;font-weight: bold;">zfkun</small></h1>
+	
+	<p class="pl370"><button id="builder">Build HTML</button></p>
+
+	<p>Target : </p>
+	<p class="pl20">
+		<label for="year">Year: </label>
+		<select id="year">
+			<option value="2013">2009</option>
+			<option value="2013">2010</option>
+			<option value="2013">2011</option>
+			<option value="2012">2012</option>
+			<option value="2013">2013</option>
+			<option value="2013">2014</option>
+			<option value="2013">2015</option>
+		</select>
+
+		&nbsp;&nbsp;&nbsp;&nbsp;
+
+		<label for="month">Month: </label>
+		<select id="month">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+		</select>
+
+		&nbsp;&nbsp;&nbsp;&nbsp;
+
+		<label for="date">Day: </label>
+		<select id="date"></select>
+	</p>
+
+	<p>Week Activate: </p>
+	<p class="pl20">
+		<label for="weekStart">Start: </label>
+		<select id="weekStart"></select>
+
+		&nbsp;&nbsp;&nbsp;&nbsp;
+
+		<label for="weekEnd">End: </label>
+		<select id="weekEnd"></select>
+
+	</p>
+
+	<p>Advanced: </p>
+	<p class="pl20">
+		<!-- <label for="autoBuild">AutoBuild: </label>
+		<input type="checkbox" id="autoBuild" checked="checked" />
+
+		&nbsp;&nbsp;&nbsp;&nbsp; -->
+
+		<label for="buildAllWeek">BuildAllWeek: </label>
+		<input type="checkbox" id="buildAllWeek" />
+
+		&nbsp;&nbsp;&nbsp;&nbsp;
+
+		<label for="weekRangeStrict">RangeMode: </label>
+		<input type="checkbox" id="weekRangeStrict" />
+
+		&nbsp;&nbsp;&nbsp;&nbsp;
+
+		<label for="fullWeekday">FullWeekday: </label>
+		<input type="checkbox" id="fullWeekday" checked="checked" />
+	</p>
+
+	<p id="outfor">HTML : </p>
+	<p  class="pl20"><textarea id="output" cols="60" rows="12"></textarea></p>
+
+	<p>Preview : </p>
+	<p id="preview"  class="pl20"></p>
+
+	<script>
+	(function(document, undefined) {
+		'use strict';
+
+		var Utils,
+			builded,
+			buildAllWeek,
+			rangeStrict,
+			fullWeekday = true;
+
+		// tiny lib
+		var U = Utils = {
+
+			// static search map
+			DAY_OF_MONTH: [31, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+
+			// current date (local)
+			NOW: (function(now) {
+				return {
+					year: now.getFullYear(),
+					month: now.getMonth() + 1,
+					date: now.getDate()
+				};
+			})(new Date()),
+
+			id: function(o) {
+				return typeof o === 'string' ? document.getElementById(o) : o;
+			},
+
+			isArray: function(obj) {
+				return Object.prototype.toString.call(obj) === '[object Array]' ||
+					Object.prototype.toString.call(obj) === '[object HTMLOptionsCollection]';
+			},
+
+			between: function(val, start, end) {
+				return start <= val && val <= end;
+			},
+
+			each: function(list, fn, scope) {
+				var items = this.isArray(list) ? list : [list], exit;
+
+				for (var i = 0, n = items.length; i < n; i++) {
+					if (fn.call(scope || fn, items[i], i, list) === false) break;
+				}
+
+				return this;
+			},
+
+			times: function(count, fn, scope, from) {
+				for (var i = from || 1; i <= count; i++) {
+					if (fn.call(scope || fn, i, count) === false) break;
+				}
+
+				return this;
+			},
+
+			isLeapYear: function(year) {
+	        	return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
+	    	},
+
+	    	daysForYearWithMonth: function(year, month) {
+				return month == 2 && this.isLeapYear(year) ? 29 : this.DAY_OF_MONTH[month];
+			},
+
+			weeksForMonthWithYear: function(month, year, start, end) {
+				var week = new Date(year, month - 1, 1).getDay(),
+					days = this.daysForYearWithMonth(year, month);
+
+				// console.info( days, week, (8 - week) % 7 || 1, days - ((8 - week) % 7 || 1) );
+
+				// way 1
+				//return Math.ceil((days - (week === 0 ? 1 : 7 - week)) / 7) + 1;
+				// way 2
+				return Math.ceil((days - (8 - week) % 7) / 7) + 1;
+			},
+
+			weekIndexForDayWithYearAndMonth: function(day, year, month) {
+				var weekForFirstDay, weekDaysForLastMonthInSelf;
+
+				if (day < 2) return 1;
+
+				weekForFirstDay = new Date(year, month - 1, 1).getDay();
+
+				// month's day is : 1 .... 28/29/30/31
+				if (weekForFirstDay === 1) return Math.ceil(day / 7);
+
+				// if 'day' in first week
+				weekDaysForLastMonthInSelf = (8 - weekForFirstDay) % 7;
+				if (day <= weekDaysForLastMonthInSelf) return 1;
+
+				// other week
+				return Math.ceil((day - weekDaysForLastMonthInSelf) / 7) + 1;
+			},
+
+			createLinkTagByUrlWithState: function(url, selected) {
+				return '<a href="' + (url || '#') + '" class="week' + (selected ? ' hover' : '') + '">'; 
+			},
+
+			addOptions: function(select, list, clean, index) {
+
+		        if (select && select.tagName.toLowerCase() === 'select') {
+		            // reset
+		            if (clean) select.options.length = 0;
+		            
+		            // fill
+		            this.isArray(list) && this.each(list, function(v, i) {
+	                    select.options.add(new Option(v[0], v[1]));
+	                });
+
+		            // selectedIndex
+		            if (index >= 0 && index < select.options.length) {
+		                select.selectedIndex = index;
+		            }
+		        }
+
+		        return this;
+		    },
+
+			build: function(year, month, weekSelected) {
+				var weekSelected = weekSelected || [0, 0],
+					week = new Date(year, month - 1, 1).getDay(),
+
+					stopAt = buildAllWeek ?
+							10
+							:
+							this.weekIndexForDayWithYearAndMonth(
+								this.id('date').value | 0, year, month
+							),
+
+					// week > 1 ???? 
+					//     below -> "this.times ... 'week' checked form 1"
+					html = (fullWeekday || (1 < week && week < 6)) ? 
+						this.createLinkTagByUrlWithState('#', weekSelected[0] < 2)
+						:
+						'',
+
+					_tmpIndex,
+					_tmpTagA = !!html;
+
+				this.times(this.daysForYearWithMonth(year, month), function(i) {
+					if (week === 1) {
+						_tmpIndex = this.weekIndexForDayWithYearAndMonth(i, year, month);
+						if (_tmpIndex <= stopAt) {
+							html += this.createLinkTagByUrlWithState(
+								'#',
+								this.between(_tmpIndex, weekSelected[0], weekSelected[1])
+							);
+							_tmpTagA = true;
+						}
+					}
+					
+					html += '<span>' + i + '</span>';
+
+					if (week === (fullWeekday ? 0 : 5) && _tmpTagA) {
+						html += '</a>';
+						_tmpTagA = false;
+					}
+
+					++week > 6 && (week = 0);
+				}, this);
+
+				return html;
+			}
+		};
+
+
+
+		// auto selected for year | month
+		U.each(U.id('year').options, function(option, i) {
+			if (U.NOW.year === (option.value | 0)) {
+				U.id('year').selectedIndex = i;
+				return false;
+			}
+		}, U).each(U.id('month').options, function(option, i) {
+			if (U.NOW.month === (option.value | 0)) {
+				U.id('month').selectedIndex = i;
+				return false;
+			}
+		});
+
+		// attach listeners
+		function updateDatesAndWeeks() {
+			var year = U.id('year').value,
+				month = U.id('month').value,
+				weeks = U.weeksForMonthWithYear(month, year),
+				options = [];
+
+			U.times(U.daysForYearWithMonth(year, month), function(day) {
+				options.push([day, day]);
+			}).addOptions(
+				U.id('date'),
+				// [].splice.call(options, 0, options.length - 1),
+				options,
+				true,
+				Math.min(Math.max(U.NOW.date - 1, 0), options.length - 1)
+			);
+
+			// reset
+			options = [];
+
+			U.times(weeks, function(week) {
+				options.push(['week ' + week, week]);
+			}).addOptions(
+				U.id('weekStart'),
+				// [].splice.call(options, 0, options.length - 1),
+				options,
+				true,
+				0
+			);
+
+			// dont't forgot update end list
+			updateWeekEndList();
+
+			// flag
+			//builded = false;
+		}
+		function updateWeekEndList() {
+			var start = (U.id('weekStart').value | 0) + (rangeStrict ? 1 : 0),
+				options = [];
+
+			U.times(U.id('weekStart').options.length, function(week, data) {
+				options.push(['week ' + week, week]);
+			}, null, start).addOptions(
+				U.id('weekEnd'),
+				options,
+				true,
+				Math.max(options.length - 1, 0)
+			);
+
+			// rebuild HTML if need
+			reBuild();
+		}
+		function buildHTML() {
+			var year = U.id('year').value,
+				month = U.id('month').value,
+				weeks = [U.id('weekStart').value | 0, U.id('weekEnd').value | 0];
+			
+			if (!year) alert('select target\'s year please!');
+			else if (!month) alert('select target\'s month please!');
+			else if (!weeks[0]) alert('select week activate\'s start please!');
+			else if (!weeks[1]) alert('select week activate\'s end please!');
+			else {
+				U.id('output').value = U.build(year | 0, month | 0, weeks);
+				U.id('outfor').innerHTML = 'HTML ( <b style="color:red;">' + year + ' - ' + month + '</b> ) : ';
+				U.id('preview').innerHTML = U.id('output').value;
+				// flag
+				builded = true;
+			}
+		}
+		function reBuild() {
+			if (builded) buildHTML();
+		}
+
+		U.id('year').onchange = updateDatesAndWeeks;
+		U.id('month').onchange = updateDatesAndWeeks;
+		U.id('date').onchange = reBuild;
+		U.id('weekStart').onchange = updateWeekEndList;
+		U.id('weekEnd').onchange = reBuild;
+		U.id('buildAllWeek').onclick = function() { reBuild(buildAllWeek = !!this.checked); };
+		U.id('weekRangeStrict').onclick = function() { };
+		U.id('fullWeekday').onclick = function() { reBuild(fullWeekday = !!this.checked); };
+		U.id('builder').onclick = buildHTML;
+
+		setTimeout(updateDatesAndWeeks, 100);
+
+	})(document);
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>isIdCard - by zfkun Demo</title>
+<meta name="description" content="Demo for isIdCard - by zfkun" />
+<style>
+.ok {font-weight:bold; color: green;}
+.error {font-weight:bold; color: red;}
+</style>
+<script src="isIdCard-min.js"></script>
+</head>
+
+<body>
+
+
+<h3>Checking...</h3>
+<div id="list"></div>
+
+<script>
+function initDemo() {
+    var doc = document,
+        IDS = '130531197507143717,990531197507143792,51050219850206348X,510502188502066023,130531197507141578'.split(','),
+        i = 0, n = IDS.length, list = doc.getElementById('list'), el;
+
+    for (; i < n; i++) {
+        list.appendChild(el = doc.createElement('p'));
+        el.innerHTML = '<span>' + IDS[i] + '</span> ' + (isIdCard(IDS[i]) ? '<span class="ok">√</span>' : '<span class="error">×</span>');
+    }
+    el = list = doc = null;
+}
+
+setTimeout(initDemo, 500);
+</script>
+
+</body>
+</html>
