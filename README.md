@@ -2,6 +2,11 @@
 
 ---
 
+##QKCoupleter
+AD Coupleter for 7K7K
+
+[[Live Demo]](http://zfkun.github.com/js/demo/QKCoupleter/)
+
 ##QKActivity 
 activity monitor for 7k7k.
 
