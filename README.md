@@ -16,7 +16,7 @@ simple 多级联动插件 for 7k7k
 ##QKPeter
 pet catcher for 7k7k
 
-[[Live Demo]](http://zfkun.github.com/js/demo/QKPeter/)
+[[Live Demo]](http://zfkun.github.com/js/demo/QKPeter/QKPeter.user.js)
 
 ##QKWeeklyPagerBuilder
 simple web builder for 7k7k's WeeklyPager UI Component
