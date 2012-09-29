@@ -46,4 +46,4 @@ Activity Monitor
     }).start();
     ...
 
-Simple [DEMO](http://zfkun.github.com/QKActivity/demo.html)
+Simple [DEMO](http://zfkun.github.com/js/demo/QKActivity/)

@@ -11,7 +11,7 @@ activity monitor for 7k7k.
 ##QKCity
 simple 多级联动插件 for 7k7k
 
-[[Live Demo]](http://zfkun.github.com/js/demo/QKCity/)
+[[Live Demo]](http://zfkun.github.com/js/demo/QKCity/)(7K7K) [[Live Demo]](http://zfkun.github.com/js/demo/QKCity/qq.html)(QQ)
 
 ##QKPeter
 pet catcher for 7k7k

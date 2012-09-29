@@ -50,4 +50,4 @@
     QKCity(['l1', 'l2', 'l3'], [12, 1202, 120202]);
 
 
-Simple [DEMO1](http://zfkun.github.com/QKCity/demo/)(7k7k)  [DEMO2](http://zfkun.github.com/QKCity/demo/qq.html)(qq)
+Simple [DEMO1](http://zfkun.github.com/js/demo/QKCity/)(7k7k)  [DEMO2](http://zfkun.github.com/js/demo/QKCity/qq.html)(qq)

@@ -1,16 +1,19 @@
-7K7K精灵抓捕器
+Pet Catcher for 7K7K
 =============
 
 #### Update:
-+ 新增IE/Firefox/Opera等支持 - 2012/1/17
++ support IE/Firefox/Opera ... - 2012/1/17
 
 #### Feature:
-+ 支持自动抓捕
-+ 支持自动积累成长值
++ auto catch
++ auto accumulate for grow up
 + ...
 
 #### TODO:
-+ 自定义游戏目标
-+ 自定义每个游戏抓捕数
-+ 自动切换游戏
++ custom games target
++ custom catch size
++ auto switch games
 + ...
+
+#### Download:
+[download](http://zfkun.github.com/js/demo/QKPeter/QKPeter.user.js)

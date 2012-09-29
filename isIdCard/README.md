@@ -27,4 +27,4 @@ IdCard Checker
     isIdCard('130531197507143717');
 
 
-Simple [DEMO1](http://zfkun.github.com/isIdCard/demo/)
+Simple [DEMO1](http://zfkun.github.com/js/demo/IsIdCard/)
