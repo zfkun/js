@@ -21,13 +21,13 @@
 	<p class="pl20">
 		<label for="year">Year: </label>
 		<select id="year">
-			<option value="2013">2009</option>
-			<option value="2013">2010</option>
-			<option value="2013">2011</option>
+			<option value="2009">2009</option>
+			<option value="2010">2010</option>
+			<option value="2011">2011</option>
 			<option value="2012">2012</option>
 			<option value="2013">2013</option>
-			<option value="2013">2014</option>
-			<option value="2013">2015</option>
+			<option value="2014">2014</option>
+			<option value="2015">2015</option>
 		</select>
 
 		&nbsp;&nbsp;&nbsp;&nbsp;
@@ -87,6 +87,17 @@
 		<input type="checkbox" id="fullWeekday" checked="checked" />
 	</p>
 
+	<p>CSS : </p>
+	<p  class="pl20">
+		<label for="buildweekGroupClsAllWeek">WeekGroup: </label>
+		<input type="text" id="weekGroupCls" value="week" size="6" />
+
+		&nbsp;&nbsp;&nbsp;&nbsp;
+
+		<label for="weekGroupHoverCls">WeekGroupHover: </label>
+		<input type="text" id="weekGroupHoverCls" value="hover" size="6" />
+	</p>
+
 	<p id="outfor">HTML : </p>
 	<p  class="pl20"><textarea id="output" cols="60" rows="12"></textarea></p>
 
@@ -101,7 +112,9 @@
 			builded,
 			buildAllWeek,
 			rangeStrict,
-			fullWeekday = true;
+			fullWeekday = true,
+			weekCls = 'week',
+			weekHoverCls = 'hover';
 
 		// tiny lib
 		var U = Utils = {
@@ -188,7 +201,7 @@
 			},
 
 			createLinkTagByUrlWithState: function(url, selected) {
-				return '<a href="' + (url || '#') + '" class="week' + (selected ? ' hover' : '') + '">'; 
+				return '<a href="' + (url || '#') + '" class="' + weekCls + (selected ? ' ' + weekHoverCls : '') + '">'; 
 			},
 
 			addOptions: function(select, list, clean, index) {
@@ -351,6 +364,8 @@
 		U.id('date').onchange = reBuild;
 		U.id('weekStart').onchange = updateWeekEndList;
 		U.id('weekEnd').onchange = reBuild;
+		U.id('weekGroupCls').onkeyup = function() { weekCls = this.value; weekCls.length > 0 ? reBuild() : ''; };
+		U.id('weekGroupHoverCls').onkeyup = function() { weekHoverCls = this.value; weekHoverCls.length > 0 ? reBuild() : ''; };
 		U.id('buildAllWeek').onclick = function() { reBuild(buildAllWeek = !!this.checked); };
 		U.id('weekRangeStrict').onclick = function() { };
 		U.id('fullWeekday').onclick = function() { reBuild(fullWeekday = !!this.checked); };
