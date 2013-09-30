@@ -7,6 +7,7 @@ an simple web builder for 7k7k's WeeklyPager UI Component
 + init - 2012/09/12
 + bug fixed for HTML build - 2012/09/12
 + bug fixed & add FullWeekday Option - 2012/09/18
++ bug fixed & add CSS Option - 2013/09/30
 
 #### Feature:
 + 'Target' support auto-async-setting when init
