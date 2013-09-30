@@ -29,4 +29,4 @@ an simple web builder for 7k7k's WeeklyPager UI Component
 
 #### Demo:
 
-  [Live Demo](http://zfkun.github.com/js/demo/QKWeeklyPagerBuilder/)
+  [Live Demo](http://zfkun.github.io/js/demo/QKWeeklyPagerBuilder/)
