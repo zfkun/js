@@ -8,4 +8,4 @@ path.css : That PNG picture is best use absolute paths (because CSS Filter)
 DEMO
 ====
 
-Simple [DEMO1](http://zfkun.github.com/js/demo/Path/)
+Simple [DEMO1](http://zfkun.github.io/js/demo/Path/)

@@ -1,39 +1,48 @@
-#code &amp; uitils &amp; tools for JavaScript
-
----
-
-##QKCoupleter
-AD Coupleter for 7K7K
-
-[[Live Demo]](http://zfkun.github.com/js/demo/QKCoupleter/)
-
-##QKActivity 
-activity monitor for 7k7k.
-
-[[Live Demo]](http://zfkun.github.com/js/demo/QKActivity/)
+# code &amp; uitils &amp; tools for JavaScript
 
 
-##QKCity
-simple 多级联动插件 for 7k7k
 
-[[Live Demo]](http://zfkun.github.com/js/demo/QKCity/)(7K7K) [[Live Demo]](http://zfkun.github.com/js/demo/QKCity/qq.html)(QQ)
+## QKCoupleter
 
-##QKPeter
-pet catcher for 7k7k
+AD Coupleter for `7K7K`
 
-[[Live Demo]](http://zfkun.github.com/js/demo/QKPeter/QKPeter.user.js)
++ [[Live Demo]](http://zfkun.github.io/js/demo/QKCoupleter/)
 
-##QKWeeklyPagerBuilder
-simple web builder for 7k7k's WeeklyPager UI Component
+## QKActivity
 
-[[Live Demo]](http://zfkun.github.com/js/demo/QKWeeklyPagerBuilder/)
+Activity Monitor for `7k7k`
 
-##isIdCard
-IdCard Checker
++ [[Live Demo]](http://zfkun.github.io/js/demo/QKActivity/)
 
-[[Live Demo]](http://zfkun.github.com/js/demo/IsIdCard/)
 
-##path
-simple path button widget.
+## QKCity
 
-[[Live Demo]](http://zfkun.github.com/js/demo/Path/)
+simple 多级联动插件 for `7k7k`
+
++ [[Live Demo]](http://zfkun.github.io/js/demo/QKCity/)(7K7K)
+
++ [[Live Demo]](http://zfkun.github.io/js/demo/QKCity/qq.html)(QQ)
+
+## QKPeter
+
+Pet Catcher robot for `7k7k`
+
++ [[Live Demo]](http://zfkun.github.io/js/demo/QKPeter/QKPeter.user.js)
+
+## QKWeeklyPagerBuilder
+
+WeeklyPager UI Component builder for `7k7k`
+
++ [[Live Demo]](http://zfkun.github.io/js/demo/QKWeeklyPagerBuilder/)
+
+## isIdCard
+
+simple `IdCard` Checker
+
++ [[Live Demo]](http://zfkun.github.io/js/demo/IsIdCard/)
+
+## path
+
+button widget like `Path`
+
++ [[Live Demo]](http://zfkun.github.io/js/demo/Path/)
